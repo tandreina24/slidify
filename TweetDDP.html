@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shiny: Assignment Developing Data Product</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Shiny: Assignment Developing Data Product">
+  <meta name="author" content="Andreina Torres">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Shiny: Assignment Developing Data Product</h1>
+    <h2>Total tweets of Famous people</h2>
+    <p>Andreina Torres<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Total tweets App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Try the app in the following link: <a href="https://andreinatorres.shinyapps.io/TwitterDDP/">https://andreinatorres.shinyapps.io/TwitterDDP/</a></p>
+
+<p><strong>About the app:</strong> This App create a histogram for the total number of tweet posted by some famous personalities.</p>
+
+<p><strong>Data source:</strong> The data were downladed from the following link.
+<a href="https://www.kaggle.com/speckledpingu/RawTwitterFeeds">https://www.kaggle.com/speckledpingu/RawTwitterFeeds</a></p>
+
+<p>Also, A breaf data cleaning were preformed to get the format needed, the cleaning code could be found in the Github Repo.</p>
+
+<h2>How use the app (Instructions)</h2>
+
+<ol>
+<li>Select the famous personalitity in the selection box (Author).</li>
+<li>It going to appear the corresponding histograms for that person.</li>
+<li>These graph are interactive.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>R expression that got evaluated (Ui.R)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To use the app please select the famous personalitity in the selection box (Author).</p>
+
+<p><img src="Appsidebar.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The server calculation (Server.R)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><strong>Graph1:</strong> &quot;Total number of tweets by year and month&quot;
+It  performed the calculation of an histogram plot of total number of tweets for the author 
+selected by month and year.</p>
+
+<pre><code>      x &lt;- list(title = &quot;Month and Year&quot;)
+      y &lt;- list(title = &quot;Total number of tweets&quot;)
+      data3&lt;-data2[data2$author==input$Author,]
+      plot_ly(x = ~data3$DateFinal2, type = &quot;histogram&quot;)  %&gt;%
+      layout(xaxis = x, yaxis = y)
+</code></pre>
+
+<p><strong>Graph2:</strong> &quot;Total number of tweets by year&quot;
+It performed the calculation of an histogram plot of total number of tweets for the author 
+selected by year.</p>
+
+<pre><code>      x &lt;- list(title = &quot;Year&quot;)
+      y &lt;- list(title = &quot;Total number of tweets&quot;)
+      data3&lt;-data2[data2$author==input$Author,]
+      plot_ly(x = ~year(data3$dateFinal), type = &quot;histogram&quot;) %&gt;%
+      layout(xaxis = x, yaxis = y)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example Output displayed</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Try the app in the following link: <a href="https://andreinatorres.shinyapps.io/TwitterDDP/">https://andreinatorres.shinyapps.io/TwitterDDP/</a></p>
+
+<p><img src="ApptwitterDDPexample.png" alt=""></p>
+
+<p>Thank you! 
+Andreina Torres</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Total tweets App'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='R expression that got evaluated (Ui.R)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The server calculation (Server.R)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Example Output displayed'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
